@@ -48,7 +48,7 @@ Service detection performed. Please report any incorrect results at https://nmap
 Nmap done: 1 IP address (1 host up) scanned in 22.79 seconds
 </code></pre><p>The <code>-A</code> flag means the scan is aggressive which includes OS detection, service versions detection, and the execution of the default set of scripts. For less intrusive attacks use <code>--script=safe</code> instead. For vulnerability detection (very useful, but more intrusive) use <code>--script=vuln</code>.</p>
 <p>The results show a Windows machine running the Microsoft IIS 6.0 web server on port 80. The next steps will be oriented to collect information about the web server and try to exploit it in order to get access to the system.</p>
-<p>Tip: If nmap indicates the host is down, it may be because the server it is not configured to reply to ping requests. Adding <code>-Pn</code> will launch the scan and ignore the ping check.</p>
+<p>Tip: If nmap indicates the host is down, it may be because the server is not configured to reply to ping requests. Adding <code>-Pn</code> will launch the scan and ignore the ping check.</p>
 <h2 id="nikto">Nikto</h2>
 <p><a href="https://github.com/sullo/nikto">https://github.com/sullo/nikto</a></p>
 <p>Nikto is a fantastic web scanner that examins web servers to find software misconfigurations, default/insecure paths available, and vulnerability to attacks such as cross-site scripting and clickjacking, among many others. The solution for some of the vulnerabilities detected by Nikto is as simple as adding a new header to your http responses which may be a neat quick win for your team.</p>

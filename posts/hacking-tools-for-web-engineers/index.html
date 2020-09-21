@@ -25,7 +25,7 @@
 
 
 
-<link rel="stylesheet" href="/main.d1ea4af8fd04fb24a4f8b882ea54bd04eb245427ca4baf527c81a5dab071410b.css">
+<link rel="stylesheet" href="/main.c0cf0ff3a3e79b7872b0f1e4670500aee8f8ec21417e87911b9ef7b084d2dcd3.css">
 
 
 
@@ -36,7 +36,7 @@
 <meta itemprop="description" content="We, web engineers, love to use steady and up-to-date web servers, well-known authentication frameworks, and robust encryption libraries. We also issue Let&rsquo;s encrypt certificates in order to encrypt our traffic, and leverage cloud private networks with well-thought-out security policies. Not even mention the salted hashes for storing passwords, and a lot more besides, and many many more security measures. We think our applications are rock solid, as secure as they can be.">
 <meta itemprop="datePublished" content="2020-09-21T04:02:47-03:00" />
 <meta itemprop="dateModified" content="2020-09-21T04:02:47-03:00" />
-<meta itemprop="wordCount" content="2933">
+<meta itemprop="wordCount" content="2932">
 <meta itemprop="image" content="https://notsag-dev.github.io/"/>
 
 
@@ -176,7 +176,7 @@ Service detection performed. Please report any incorrect results at https://nmap
 Nmap done: 1 IP address (1 host up) scanned in 22.79 seconds
 </code></pre><p>The <code>-A</code> flag means the scan is aggressive which includes OS detection, service versions detection, and the execution of the default set of scripts. For less intrusive attacks use <code>--script=safe</code> instead. For vulnerability detection (very useful, but more intrusive) use <code>--script=vuln</code>.</p>
 <p>The results show a Windows machine running the Microsoft IIS 6.0 web server on port 80. The next steps will be oriented to collect information about the web server and try to exploit it in order to get access to the system.</p>
-<p>Tip: If nmap indicates the host is down, it may be because the server it is not configured to reply to ping requests. Adding <code>-Pn</code> will launch the scan and ignore the ping check.</p>
+<p>Tip: If nmap indicates the host is down, it may be because the server is not configured to reply to ping requests. Adding <code>-Pn</code> will launch the scan and ignore the ping check.</p>
 <h2 id="nikto">Nikto</h2>
 <p><a href="https://github.com/sullo/nikto">https://github.com/sullo/nikto</a></p>
 <p>Nikto is a fantastic web scanner that examins web servers to find software misconfigurations, default/insecure paths available, and vulnerability to attacks such as cross-site scripting and clickjacking, among many others. The solution for some of the vulnerabilities detected by Nikto is as simple as adding a new header to your http responses which may be a neat quick win for your team.</p>
@@ -437,7 +437,7 @@ c:\windows\system32\inetsrv&gt;
           <line x1="16" y1="17" x2="8" y2="17"></line>
           <polyline points="10 9 9 9 8 9"></polyline>
         </svg>
-        2933 Words
+        2932 Words
       </p>
 
       <p>
