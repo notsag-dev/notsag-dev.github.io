@@ -10,7 +10,7 @@
         <atom:link href="https://notsag-dev.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
         
         <item>
-            <title>Hacking tools for web engineers</title>
+            <title>Security tools for web engineers</title>
             <link>https://notsag-dev.github.io/posts/hacking-tools-for-web-engineers/</link>
             <pubDate>Mon, 21 Sep 2020 04:02:47 -0300</pubDate>
             
@@ -52,7 +52,7 @@ Nmap done: 1 IP address (1 host up) scanned in 22.79 seconds
 <p>Tip: If nmap indicates the host is down, it may be because the server is not configured to reply to ping requests. Adding <code>-Pn</code> will launch the scan and ignore the ping check.</p>
 <h2 id="nikto">Nikto</h2>
 <p><a href="https://github.com/sullo/nikto">https://github.com/sullo/nikto</a></p>
-<p>Nikto is a fantastic web scanner that examins web servers to find software misconfigurations, default/insecure paths available, and vulnerability to attacks such as cross-site scripting and clickjacking, among many others. The solution for some of the vulnerabilities detected by Nikto is as simple as adding a new header to your http responses which may be a neat quick win for your team.</p>
+<p>Nikto is a fantastic web scanner that examines web servers to find software misconfigurations, default/insecure paths available, and vulnerability to attacks such as cross-site scripting and clickjacking, among many others. The solution for some of the vulnerabilities detected by Nikto is as simple as adding a new header to your http responses which may be a neat quick win for your team.</p>
 <p>Example:</p>
 <pre><code>$ nikto -host 10.10.10.14
 
@@ -129,7 +129,7 @@ by OJ Reeves (@TheColonial) &amp; Christian Mehlmauer (@_FireFart_)
 2020/09/15 00:34:40 Finished
 ===============================================================
 </code></pre><p>The result shows which paths were found and their corresponding HTTP status codes. Note that this information complements the already quick path discovery performed by Nikto, getting some new paths this time.</p>
-<p>So, should these paths be visible or not? First of all navigate them, see what information can be obtained from them. Then, for standard paths it will be enough some Googling (or Duckduckgoing) in order to determine if they should be publicly available or not, do your investigation depending on your scan results!</p>
+<p>So, should these paths be visible or not? First of all navigate them, see what information can be obtained from them. Then, for standard paths it will be enough to Google (or Duckduckgo) a bit in order to determine if they should be publicly available or not, do your investigation depending on your scan results!</p>
 <h2 id="searchsploit">Searchsploit</h2>
 <p><a href="https://github.com/offensive-security/exploitdb">https://github.com/offensive-security/exploitdb</a></p>
 <p>Searchsploit is a great tool for finding available exploits for applications and kernels. If a vulnerable version of an application is being executed on your server, it may be possible for a malicious actor to exploit it to gain access to your data or perform other types of attacks. On the other hand, being able to execute these verifications ourselves is a great skill to have to proactively defend our systems.</p>
@@ -153,13 +153,13 @@ Microsoft IIS 6.0 - WebDAV Remote Authentication Bypass (PHP)                   
 Microsoft IIS 6.0/7.5 (+ PHP) - Multiple Vulnerabilities                                   | windows/remote/19033.txt
 ------------------------------------------------------------------------------------------- ---------------------------------
 Shellcodes: No Results
-</code></pre><p>This is the result of searching exploits for the IIS 6.0 web server that was detected before using both Nmap and Nikto. It can be appreciated that several exploits were found for this particular version of IIS, having on the left column a short description of the vulnerability, and on the right colum the path of exploits and other files with relevant information.</p>
+</code></pre><p>This is the result of searching exploits for the IIS 6.0 web server that was detected before using both Nmap and Nikto. It can be appreciated that several exploits were found for this particular version of IIS, having on the left column a short description of the vulnerability, and on the right column the path of exploits and other files with relevant information.</p>
 <p>Tip: To retrieve the exact location of the exploits or info files on your system, let&rsquo;s say for the first one listed which is <code>windows/remote/21057.txt</code>,  run <code>searchsploit -p windows/remote/21057.txt</code>. If <code>locate</code> is available, <code>locate windows/remote/21057.txt</code> would also work.</p>
 <p><strong>Warning:</strong> Do not just execute exploits if you are not sure about what they do, some of them are harmful. Open the exploit file and see what it does before running it.</p>
 <h2 id="metasploit">Metasploit</h2>
 <p><a href="https://github.com/rapid7/metasploit-framework">https://github.com/rapid7/metasploit-framework</a></p>
 <p>Metasploit is an exploitation framework created by Rapid7. It is widely used by security professionals and also by black-hat hackers, and it simplifies A LOT the process of collecting information, doing a vulnerability analysis, exploiting, and post-exploiting a system. When it comes to learning resources about this tool, I cannot recommend highly enough <a href="https://www.youtube.com/watch?v=TCPyoWHy4eA&amp;list=PL7-g2-mnZwSEFhqybJFEPZYhNFqqbCe9_">Hak5&rsquo;s Metasploit Minute</a> and <a href="https://www.youtube.com/watch?v=8lR27r8Y_ik&amp;list=PLBf0hzazHTGN31ZPTzBbk70bohTYT7HSm">HackerSploit&rsquo;s Metasploit videos</a>!</p>
-<p>This example will be a little bit different to the other ones as we will use <em>msfconsole</em>, the Metasploit console, to gain access to the server and pop and actual shell on it. This can be done in less than two minutes by following a few simple steps:</p>
+<p>This example will be a little bit different to the other ones as we will use <em>msfconsole</em>, the Metasploit console, to gain access to the server and pop an actual shell on it. This can be done in less than two minutes by following a few simple steps:</p>
 <ol>
 <li>Search for IIS-related Metasploit modules (similar to searchsploit)</li>
 <li>Select an exploit and set its options</li>
@@ -205,7 +205,7 @@ Matching Modules
    28  exploit/windows/isapi/w3who_query                                2004-12-06       good       Yes    Microsoft IIS ISAPI w3who.dll Query String Overflow
    29  exploit/windows/scada/advantech_webaccess_dashboard_file_upload  2016-02-05       excellent  Yes    Advantech WebAccess Dashboard Viewer uploadImageCommon Arbitrary File Upload
    30  exploit/windows/ssl/ms04_011_pct                                 2004-04-13       average    No     MS04-011 Microsoft Private Communications Transport Overflow
-</code></pre><p>It is possible to recognize several exploits and scanners among the Metasploit modules available for IIS servers, please take a moment to read through the results. This time the <em>Microsoft IIS WebDav ScStoragePathFromUrl Overflow</em> exploit will be used (search result number 15 on the list), which is related to the <a href="https://www.cvedetails.com/cve/CVE-2017-7269/">CVE-2017-7269</a> vulnerability and it is also know as &ldquo;Exploding Can&rdquo;. Note that, when successful, the execution of this exploit leads to remote code execution.</p>
+</code></pre><p>It is possible to recognize several exploits and scanners among the Metasploit modules available for IIS servers, please take a moment to read through the results. This time the <em>Microsoft IIS WebDav ScStoragePathFromUrl Overflow</em> exploit will be used (search result number 15 on the list), which is related to the <a href="https://www.cvedetails.com/cve/CVE-2017-7269/">CVE-2017-7269</a> vulnerability and it is also known as &ldquo;Exploding Can&rdquo;. Note that, when successful, the execution of this exploit leads to remote code execution.</p>
 <h3 id="select-an-exploit-and-set-its-options">Select an exploit and set its options</h3>
 <p>The <code>use</code> command will be used to select the exploit to be executed, and <code>show options</code> to get the options that have to be set in order to execute it:</p>
 <pre><code>msf5 &gt; use exploit/windows/iis/iis_webdav_scstoragepathfromurl
