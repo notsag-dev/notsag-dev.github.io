@@ -3,19 +3,19 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>/</loc>
+    <loc>https://notsag-dev.github.io/</loc>
   </url>
   
   <url>
-    <loc>/blog/</loc>
+    <loc>https://notsag-dev.github.io/blog/</loc>
   </url>
   
   <url>
-    <loc>/series/</loc>
+    <loc>https://notsag-dev.github.io/series/</loc>
   </url>
   
   <url>
-    <loc>/tags/</loc>
+    <loc>https://notsag-dev.github.io/tags/</loc>
   </url>
   
 </urlset>

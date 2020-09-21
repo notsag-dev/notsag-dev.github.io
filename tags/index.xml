@@ -2,10 +2,10 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on @notsag-dev</title>
-    <link>/tags/</link>
+    <link>https://notsag-dev.github.io/tags/</link>
     <description>Recent content in Tags on @notsag-dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <copyright>☠</copyright><atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
+    <copyright>☠</copyright><atom:link href="https://notsag-dev.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>
